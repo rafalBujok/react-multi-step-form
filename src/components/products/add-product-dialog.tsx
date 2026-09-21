@@ -10,6 +10,7 @@ import {
   DialogFooter,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import { Separator } from '@/components/ui/separator'
 import { StepIndicator } from '@/components/products/step-indicator'
 import { StepBasicInfo } from '@/components/products/steps/step-basic-info'
 import { StepPricing } from '@/components/products/steps/step-pricing'
@@ -60,7 +61,7 @@ export function AddProductDialog({ onAddProduct }: AddProductDialogProps) {
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button>
+        <Button className="h-auto px-4 py-2">
           <Plus />
           Dodaj produkt
         </Button>
@@ -72,9 +73,15 @@ export function AddProductDialog({ onAddProduct }: AddProductDialogProps) {
           <DialogTitle>Dodaj nowy produkt</DialogTitle>
         </DialogHeader>
 
-        <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overflow-x-hidden px-1 -mx-1">
-          <StepIndicator currentStep={step} />
+        <div className="shrink-0">
+          <Separator className="min-[720px]:!w-auto min-[720px]:-mx-4" />
+          <div className="py-4">
+            <StepIndicator currentStep={step} />
+          </div>
+          <Separator className="min-[720px]:!w-auto min-[720px]:-mx-4" />
+        </div>
 
+        <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overflow-x-hidden px-1 -mx-1">
           <form
             onSubmit={(e) => {
               e.preventDefault()
@@ -89,7 +96,11 @@ export function AddProductDialog({ onAddProduct }: AddProductDialogProps) {
 
         <DialogFooter className="shrink-0 flex-row justify-between sm:justify-between">
           {step > 1 ? (
-            <Button variant="outline" onClick={() => setStep((s) => (s === 3 ? 2 : 1))}>
+            <Button
+              variant="outline"
+              className="h-auto px-4 py-2"
+              onClick={() => setStep((s) => (s === 3 ? 2 : 1))}
+            >
               <ArrowLeft />
               Wstecz
             </Button>
@@ -97,7 +108,7 @@ export function AddProductDialog({ onAddProduct }: AddProductDialogProps) {
             <span aria-hidden />
           )}
           {step < 3 ? (
-            <Button onClick={handleNext}>
+            <Button className="h-auto px-4 py-2" onClick={handleNext}>
               Dalej
               <ArrowRight />
             </Button>

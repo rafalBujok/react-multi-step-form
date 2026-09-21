@@ -24,7 +24,7 @@ const step2Fields = z.object({
 const step3Fields = z.object({
   available: z.boolean(),
   limited: z.boolean(),
-  stockQuantity: z.number().int().nonnegative('Ilość nie może być ujemna').optional(),
+  stockQuantity: z.number().int().positive('Stan magazynowy musi być większy od 0').optional(),
   minCartQuantity: z.number().int('Min. ilość musi być liczbą całkowitą').positive('Min. ilość musi być większa od 0'),
   maxCartQuantity: z.number().int('Maks. ilość musi być liczbą całkowitą').positive('Maks. ilość musi być większa od 0'),
 })
@@ -32,7 +32,7 @@ const step3Fields = z.object({
 type Step3Fields = z.infer<typeof step3Fields>
 
 function step3Refinements(data: Step3Fields, ctx: z.RefinementCtx) {
-  if (data.limited && (data.stockQuantity === undefined || data.stockQuantity === null)) {
+  if (data.limited && (data.stockQuantity === undefined || data.stockQuantity === null || data.stockQuantity === 0)) {
     ctx.addIssue({
       code: 'custom',
       path: ['stockQuantity'],
