@@ -24,7 +24,13 @@ export function StepAvailability({ form }: { form: ProductFormApi }) {
             <Checkbox
               id={field.name}
               checked={field.state.value}
-              onCheckedChange={(checked) => field.handleChange(checked === true)}
+              onCheckedChange={(checked) => {
+                const isLimited = checked === true
+                field.handleChange(isLimited)
+                if (!isLimited) {
+                  form.setFieldValue('stockQuantity', 0)
+                }
+              }}
             />
             <Label htmlFor={field.name}>Produkt limitowany</Label>
           </div>
