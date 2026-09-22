@@ -1,5 +1,5 @@
-import { parseAsInteger, useQueryState } from 'nuqs'
 import { cn } from '@/lib/utils'
+import { useProductsPage } from '@/hooks/use-products-page'
 import {
   Pagination,
   PaginationContent,
@@ -8,10 +8,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
-
-export function useProductsPage() {
-  return useQueryState('page', parseAsInteger.withDefault(1))
-}
 
 interface ProductsPaginationProps {
   totalPages: number;
