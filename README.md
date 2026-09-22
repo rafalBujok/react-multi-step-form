@@ -2,6 +2,8 @@
 
 Zadanie rekrutacyjne — trzyetapowy formularz dodawania produktu osadzony w oknie modalnym, z tabelą produktów i paginacją zsynchronizowaną z URL.
 
+**Wersja live:** https://react-multi-step-form-ebon.vercel.app/
+
 ## Stack technologiczny
 
 - **Vite + React 19 + TypeScript** — SPA
